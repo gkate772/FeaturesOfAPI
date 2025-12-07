@@ -23,6 +23,11 @@ builder.Services.AddSwaggerGen(c =>
         //}
     });
 
+    // XML comments file
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+
 });
 
 builder.Services.AddControllers();

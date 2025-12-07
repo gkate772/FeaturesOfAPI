@@ -7,6 +7,11 @@ namespace Swagger.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+
+    /// <summary>
+    /// Gets all test.
+    /// </summary>
+    /// <returns>This is test Endpoint</returns>
     public class TestController : ControllerBase
     {
         [HttpGet("ping")]
