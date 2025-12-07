@@ -23,3 +23,7 @@ if (app.Environment.IsDevelopment())
 
 Run → open /swagger
 
+
+Remove Endpoint from Document
+[ApiExplorerSettings(IgnoreApi = true)]
+

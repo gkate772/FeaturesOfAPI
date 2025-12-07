@@ -8,7 +8,7 @@ namespace Swagger.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
+    
     /// <summary>
     /// Gets all test.
     /// </summary>
@@ -16,6 +16,7 @@ namespace Swagger.Controllers
     public class TestController : ControllerBase
     {
         [HttpGet("ping")]
+        [ApiExplorerSettings(IgnoreApi = true)]
         public string Ping() => "API working from Console App!";
 
         [HttpPost("InsertData")]
