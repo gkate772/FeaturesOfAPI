@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swagger.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,5 +17,11 @@ namespace Swagger.Controllers
     {
         [HttpGet("ping")]
         public string Ping() => "API working from Console App!";
+
+        [HttpPost("InsertData")]
+        public void InsertData(TestInsertData data)
+        {
+        }
+
     }
 }
