@@ -53,3 +53,6 @@ DatabaseAuditLogger → logs to database
 --->1 Constructor Injection (Without Interfaces)
 --->2 Property Injection (Without Interfaces)
 --->3 Method Injection (Without Interfaces)
+
+* Constructor / Property / Method injection without interfaces only moves object creation outside the class.
+Coupling is reduced slightly but NOT eliminated.
