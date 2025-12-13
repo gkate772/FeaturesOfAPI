@@ -30,4 +30,5 @@ causing tight dependency, low flexibility, and poor testability.
 
 
 ---> Constructor Usage (Still High Coupling)
+---> Property Usage (Still High Coupling)
 
