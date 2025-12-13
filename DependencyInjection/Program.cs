@@ -25,11 +25,21 @@ internal class Program
 
 
         //With DI
-        var sms = new SmsNotifier();
-        var whatsapp = new WhatsAppNotifier();
-        var logger = new DatabaseAuditLogger();
+        //var sms = new SmsNotifier();
+        //var whatsapp = new WhatsAppNotifier();
+        //var logger = new DatabaseAuditLogger();
 
-        var processor = new OrderProcessor(sms, whatsapp, logger);
+        //var processor = new OrderProcessor(sms, whatsapp, logger);
+        //processor.ProcessOrder();
+
+        //Property Injection (Without Interfaces)
+        var processor = new OrderProcessor
+        {
+            SmsNotifier = new SmsNotifier(),
+            WhatsAppNotifier = new WhatsAppNotifier(),
+            AuditLogger = new DatabaseAuditLogger()
+        };
+
         processor.ProcessOrder();
     }
 }
