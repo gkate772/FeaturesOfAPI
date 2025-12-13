@@ -27,3 +27,7 @@ If DatabaseLogger changes to FileLogger
 
 High coupling occurs when a class directly creates and depends on multiple concrete services,
 causing tight dependency, low flexibility, and poor testability.
+
+
+---> Constructor Usage (Still High Coupling)
+
