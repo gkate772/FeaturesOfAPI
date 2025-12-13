@@ -2,7 +2,7 @@
 {
     public interface IPaymentProcessor
     {
-        IEmailNotifier EmailNotifier { get; set; }
+        //IEmailNotifier EmailNotifier { get; set; }
 
         void ProcessPayment(IDatabaseLogger dbLogger);
     }

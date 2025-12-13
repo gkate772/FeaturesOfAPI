@@ -78,3 +78,35 @@ it does not remove tight coupling.
 
 ---> PaymentProcessor class and demonstrates constructor, property, 
 and method injection using interfaces.
+
+
+@@ DI Container
+A Dependency Injection (DI) Container is a framework/component that:
+✔ Creates objects
+✔ Manages their dependencies
+✔ Controls object lifetime
+✔ Injects dependencies automatically
+
+👉 You don’t use `new` everywhere.
+👉 The container resolves and injects dependencies for you.
+
+* Built-in DI Container in .NET
+
+Step 1 Install Package (if needed)
+Microsoft.Extensions.DependencyInjection
+
+Step 2 Configure Container (Service Registration)
+
+Step 3 Resolve Services
+
+* Service Lifetimes (Very Important)
+
+| Lifetime    | Meaning                       |
+| ----------- | ----------------------------- |
+| `Transient` | New instance every time       |
+| `Scoped`    | Same instance per request     |
+| `Singleton` | One instance for app lifetime |
+
+
+** Note :- The built-in .NET DI container does not support property injection automatically.
+temporary remove  property injection in code.

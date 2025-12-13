@@ -3,6 +3,8 @@ using DependencyInjection.WithDI;
 using DependencyInjection.WithoutDI;
 using DatabaseLogger = DependencyInjection.AllInOneClass.DatabaseLogger;
 using SmsNotifier = DependencyInjection.AllInOneClass.SmsNotifier;
+using Microsoft.Extensions.DependencyInjection;
+
 
 internal class Program
 {
@@ -67,18 +69,39 @@ internal class Program
         //var dbLogger = new DatabaseLogger();
         //processor.ProcessPayment(dbLogger);
 
-        // 1️ Constructor Injection
-        ISmsNotifier smsNotifier = new SmsNotifier();
-        IPaymentProcessor paymentProcessor = new PaymentProcessor(smsNotifier);
+        //// 1️ Constructor Injection
+        //ISmsNotifier smsNotifier = new SmsNotifier();
+        //IPaymentProcessor paymentProcessor = new PaymentProcessor(smsNotifier);
 
-        // 2️ Property Injection
-        paymentProcessor.EmailNotifier = new EmailNotifier();
+        //// 2️ Property Injection
+        //paymentProcessor.EmailNotifier = new EmailNotifier();
 
-        // 3️ Method Injection
-        IDatabaseLogger databaseLogger = new DatabaseLogger();
+        //// 3️ Method Injection
+        //IDatabaseLogger databaseLogger = new DatabaseLogger();
 
-        paymentProcessor.ProcessPayment(databaseLogger);
+        //paymentProcessor.ProcessPayment(databaseLogger);
 
-        Console.ReadLine();
+        //Console.ReadLine();
+
+
+        //Configure Container (Service Registration)
+        var services = new ServiceCollection();
+        // Register services
+        services.AddTransient<ISmsNotifier, SmsNotifier>();
+        services.AddTransient<IEmailNotifier, EmailNotifier>();
+        services.AddTransient<IDatabaseLogger, DatabaseLogger>();
+        services.AddTransient<IPaymentProcessor, PaymentProcessor>();
+
+        // Build container
+        var serviceProvider = services.BuildServiceProvider();
+
+        //Resolve Services
+        var processer=serviceProvider.GetRequiredService<IPaymentProcessor>();
+        var logger =serviceProvider.GetRequiredService<IDatabaseLogger>();
+
+        processer.ProcessPayment(logger);
+
+
+
     }
 }
