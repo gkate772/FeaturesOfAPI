@@ -29,23 +29,35 @@ namespace DependencyInjection.WithoutDI
 
 
         //Property Usage
-        public SmsService SmsService { get; set; }
-        public WhatsAppService WhatsAppService { get; set; }
-        public DatabaseLogger DatabaseLogger { get; set; }
-        public void GenerateReport()
+        //public SmsService SmsService { get; set; }
+        //public WhatsAppService WhatsAppService { get; set; }
+        //public DatabaseLogger DatabaseLogger { get; set; }
+        //public void GenerateReport()
+        //{
+        //    Console.WriteLine("Report generated");
+
+        //    // _logger.Log("Report generated successfully");
+        //    // _emailService.SendEmail("Report generated successfully");
+
+        //    //_databaseLogger.LogToDatabase("Report generated");
+        //    //_smsService.SendSms("Report generated");
+        //    //_whatsAppService.SendWhatsApp("Report generated");
+
+        //    DatabaseLogger.LogToDatabase("Report generated");
+        //    SmsService.SendSms("Report generated");
+        //    WhatsAppService.SendWhatsApp("Report generated");
+        //}
+
+
+        //Method Usage
+        public void GenerateReport(
+        SmsService smsService,
+        WhatsAppService whatsAppService,
+        DatabaseLogger databaseLogger)
         {
-            Console.WriteLine("Report generated");
-
-            // _logger.Log("Report generated successfully");
-            // _emailService.SendEmail("Report generated successfully");
-
-            //_databaseLogger.LogToDatabase("Report generated");
-            //_smsService.SendSms("Report generated");
-            //_whatsAppService.SendWhatsApp("Report generated");
-
-            DatabaseLogger.LogToDatabase("Report generated");
-            SmsService.SendSms("Report generated");
-            WhatsAppService.SendWhatsApp("Report generated");
+            databaseLogger.LogToDatabase("Report generated");
+            smsService.SendSms("Report generated");
+            whatsAppService.SendWhatsApp("Report generated");
         }
     }
 }

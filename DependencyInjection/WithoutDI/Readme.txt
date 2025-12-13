@@ -31,4 +31,10 @@ causing tight dependency, low flexibility, and poor testability.
 
 ---> Constructor Usage (Still High Coupling)
 ---> Property Usage (Still High Coupling)
+--->Method Usage (Still High Coupling)
+1)Why still high coupling?
+Method signature locked to concrete classes
+Every call must know all implementations
+
+Using constructor, property, or method alone does NOT reduce coupling.
 
