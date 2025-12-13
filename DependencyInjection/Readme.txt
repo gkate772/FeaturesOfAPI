@@ -56,3 +56,21 @@ DatabaseAuditLogger → logs to database
 
 * Constructor / Property / Method injection without interfaces only moves object creation outside the class.
 Coupling is reduced slightly but NOT eliminated.
+
+
+@@ ONE SINGLE CLASS that demonstrates all three types of injection
+(Constructor, Property, Method) WITHOUT interfaces.
+
+Single-Class Example
+
+Class Name: PaymentProcessor
+Dependencies:
+SmsNotifier
+EmailNotifier
+DatabaseLogger
+
+ONE CLASS WITH ALL 3 INJECTION TYPES
+
+* Using constructor, property,
+and method injection without interfaces only changes how dependencies are supplied;
+it does not remove tight coupling.

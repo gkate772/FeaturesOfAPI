@@ -1,4 +1,5 @@
-﻿using DependencyInjection.WithDI;
+﻿using DependencyInjection.AllInOneClass;
+using DependencyInjection.WithDI;
 using DependencyInjection.WithoutDI;
 
 internal class Program
@@ -44,12 +45,24 @@ internal class Program
 
         //Method Injection(Without Interfaces)
 
-        var processor = new OrderProcessor();
+        //var processor = new OrderProcessor();
 
-        processor.ProcessOrder(
-            new SmsNotifier(),
-            new WhatsAppNotifier(),
-            new DatabaseAuditLogger()
-        );
+        //processor.ProcessOrder(
+        //    new SmsNotifier(),
+        //    new WhatsAppNotifier(),
+        //    new DatabaseAuditLogger()
+        //);
+
+
+        // Constructor Injection
+        var sms = new DependencyInjection.AllInOneClass.SmsNotifier();
+        var processor = new PaymentProcessor(sms);
+
+        // Property Injection
+        processor.EmailNotifier = new EmailNotifier();
+
+        // Method Injection
+        var dbLogger = new DependencyInjection.AllInOneClass.DatabaseLogger();
+        processor.ProcessPayment(dbLogger);
     }
 }
