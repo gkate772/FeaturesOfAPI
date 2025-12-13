@@ -38,3 +38,16 @@ Every call must know all implementations
 
 Using constructor, property, or method alone does NOT reduce coupling.
 
+
+@@ With DI
+Order Processing System
+DI style (constructor / property / method) WITHOUT interfaces,
+so it’s easy to understand and remember.
+
+OrderProcessor → main business class
+SmsNotifier → sends SMS
+WhatsAppNotifier → sends WhatsApp message
+DatabaseAuditLogger → logs to database
+(No interfaces, no DI framework)
+
+--->1 Constructor Injection (Without Interfaces)

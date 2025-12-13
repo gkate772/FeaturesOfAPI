@@ -1,4 +1,5 @@
-﻿using DependencyInjection.WithoutDI;
+﻿using DependencyInjection.WithDI;
+using DependencyInjection.WithoutDI;
 
 internal class Program
 {
@@ -14,12 +15,21 @@ internal class Program
         //reportService.GenerateReport();
 
 
-        ReportService reportService = new ReportService();
+        //ReportService reportService = new ReportService();
 
-        reportService.GenerateReport(
-            new SmsService(),
-            new WhatsAppService(),
-            new DatabaseLogger()
-        );
+        //reportService.GenerateReport(
+        //    new SmsService(),
+        //    new WhatsAppService(),
+        //    new DatabaseLogger()
+        //);
+
+
+        //With DI
+        var sms = new SmsNotifier();
+        var whatsapp = new WhatsAppNotifier();
+        var logger = new DatabaseAuditLogger();
+
+        var processor = new OrderProcessor(sms, whatsapp, logger);
+        processor.ProcessOrder();
     }
 }
