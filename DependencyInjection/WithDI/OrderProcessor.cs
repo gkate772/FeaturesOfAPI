@@ -29,15 +29,26 @@ namespace DependencyInjection.WithDI
 
 
         //Property Injection(Without Interfaces)
-        public SmsNotifier SmsNotifier { get; set; }
-        public WhatsAppNotifier WhatsAppNotifier { get; set; }
-        public DatabaseAuditLogger AuditLogger { get; set; }
+        //public SmsNotifier SmsNotifier { get; set; }
+        //public WhatsAppNotifier WhatsAppNotifier { get; set; }
+        //public DatabaseAuditLogger AuditLogger { get; set; }
 
-        public void ProcessOrder()
+        //public void ProcessOrder()
+        //{
+        //    AuditLogger.Log("Order processed");
+        //    SmsNotifier.Notify("Order processed");
+        //    WhatsAppNotifier.Notify("Order processed");
+        //}
+
+        //Method Injection (Without Interfaces)
+        public void ProcessOrder(
+        SmsNotifier smsNotifier,
+        WhatsAppNotifier whatsAppNotifier,
+        DatabaseAuditLogger auditLogger)
         {
-            AuditLogger.Log("Order processed");
-            SmsNotifier.Notify("Order processed");
-            WhatsAppNotifier.Notify("Order processed");
+            auditLogger.Log("Order processed");
+            smsNotifier.Notify("Order processed");
+            whatsAppNotifier.Notify("Order processed");
         }
     }
 }

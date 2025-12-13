@@ -52,3 +52,4 @@ DatabaseAuditLogger → logs to database
 
 --->1 Constructor Injection (Without Interfaces)
 --->2 Property Injection (Without Interfaces)
+--->3 Method Injection (Without Interfaces)

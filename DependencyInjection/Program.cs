@@ -33,13 +33,23 @@ internal class Program
         //processor.ProcessOrder();
 
         //Property Injection (Without Interfaces)
-        var processor = new OrderProcessor
-        {
-            SmsNotifier = new SmsNotifier(),
-            WhatsAppNotifier = new WhatsAppNotifier(),
-            AuditLogger = new DatabaseAuditLogger()
-        };
+        //var processor = new OrderProcessor
+        //{
+        //    SmsNotifier = new SmsNotifier(),
+        //    WhatsAppNotifier = new WhatsAppNotifier(),
+        //    AuditLogger = new DatabaseAuditLogger()
+        //};
 
-        processor.ProcessOrder();
+        //processor.ProcessOrder();
+
+        //Method Injection(Without Interfaces)
+
+        var processor = new OrderProcessor();
+
+        processor.ProcessOrder(
+            new SmsNotifier(),
+            new WhatsAppNotifier(),
+            new DatabaseAuditLogger()
+        );
     }
 }
