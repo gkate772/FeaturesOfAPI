@@ -1,23 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DependencyInjection.AllInOneClass
 {
-    public class PaymentProcessor
+    public class PaymentProcessor : IPaymentProcessor
     {
-        private readonly SmsNotifier _smsNotifier;          // Constructor
-        public EmailNotifier EmailNotifier { get; set; }    // Property
+        private readonly ISmsNotifier _smsNotifier;          // Constructor Injection
+        public IEmailNotifier EmailNotifier { get; set; }    // Property Injection
 
-        // 1️⃣ Constructor Injection (without interfaces)
-        public PaymentProcessor(SmsNotifier smsNotifier)
+        public PaymentProcessor(ISmsNotifier smsNotifier)
         {
-            _smsNotifier = smsNotifier;
+            _smsNotifier = smsNotifier
+                ?? throw new ArgumentNullException(nameof(smsNotifier));
         }
 
-        // 3️⃣ Method Injection (without interfaces)
-        public void ProcessPayment(DatabaseLogger dbLogger)
+        // Method Injection
+        public void ProcessPayment(IDatabaseLogger dbLogger)
         {
+            if (dbLogger == null)
+                throw new ArgumentNullException(nameof(dbLogger));
+
+            if (EmailNotifier == null)
+                throw new InvalidOperationException("EmailNotifier is not set.");
+
             dbLogger.Log("Payment processed");
             _smsNotifier.Send("Payment processed");
             EmailNotifier.Send("Payment processed");

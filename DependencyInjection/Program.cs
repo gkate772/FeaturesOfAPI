@@ -1,6 +1,8 @@
 ﻿using DependencyInjection.AllInOneClass;
 using DependencyInjection.WithDI;
 using DependencyInjection.WithoutDI;
+using DatabaseLogger = DependencyInjection.AllInOneClass.DatabaseLogger;
+using SmsNotifier = DependencyInjection.AllInOneClass.SmsNotifier;
 
 internal class Program
 {
@@ -54,15 +56,29 @@ internal class Program
         //);
 
 
-        // Constructor Injection
-        var sms = new DependencyInjection.AllInOneClass.SmsNotifier();
-        var processor = new PaymentProcessor(sms);
+        // // Constructor Injection
+        //var sms = new SmsNotifier();
+        //var processor = new PaymentProcessor(sms);
 
-        // Property Injection
-        processor.EmailNotifier = new EmailNotifier();
+        //// Property Injection
+        //processor.EmailNotifier = new EmailNotifier();
 
-        // Method Injection
-        var dbLogger = new DependencyInjection.AllInOneClass.DatabaseLogger();
-        processor.ProcessPayment(dbLogger);
+        //// Method Injection
+        //var dbLogger = new DatabaseLogger();
+        //processor.ProcessPayment(dbLogger);
+
+        // 1️ Constructor Injection
+        ISmsNotifier smsNotifier = new SmsNotifier();
+        IPaymentProcessor paymentProcessor = new PaymentProcessor(smsNotifier);
+
+        // 2️ Property Injection
+        paymentProcessor.EmailNotifier = new EmailNotifier();
+
+        // 3️ Method Injection
+        IDatabaseLogger databaseLogger = new DatabaseLogger();
+
+        paymentProcessor.ProcessPayment(databaseLogger);
+
+        Console.ReadLine();
     }
 }

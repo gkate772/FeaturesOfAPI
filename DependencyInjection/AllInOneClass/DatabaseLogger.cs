@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DependencyInjection.AllInOneClass
 {
-    public class DatabaseLogger
+    public class DatabaseLogger : IDatabaseLogger
     {
         public void Log(string message)
         {

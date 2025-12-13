@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DependencyInjection.AllInOneClass
 {
-    public class EmailNotifier
+    public class EmailNotifier : IEmailNotifier
     {
         public void Send(string message)
         {
