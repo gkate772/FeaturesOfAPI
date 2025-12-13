@@ -110,3 +110,35 @@ Step 3 Resolve Services
 
 ** Note :- The built-in .NET DI container does not support property injection automatically.
 temporary remove  property injection in code.
+
+@@ Service Lifetime
+
+1 Transient
+👉 New instance every time
+Meaning
+A new object is created each time it is requested
+Even within the same request, you get different instances
+
+2 Scoped
+👉 Same instance per request
+Meaning
+One instance is created per scope
+In ASP.NET Core → scope = HTTP request
+Same instance shared within that request
+New request → new instance
+
+3 Singleton
+👉 One instance for entire application
+Meaning
+Only one instance is created
+Shared across all requests & users
+Created once and reused
+
+| Lifetime  | Instances Created | Shared             | Common Use         |
+| --------- | ----------------- | ------------------ | ------------------ |
+| Transient | Every request     | ❌                  | Helpers, utilities |
+| Scoped    | Per request       | ✔ (within request) | DbContext          |
+| Singleton | Once              | ✔ (global)         | Cache, config      |
+
+Note : A Singleton must NOT depend on a Scoped service
+

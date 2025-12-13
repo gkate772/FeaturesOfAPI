@@ -88,18 +88,36 @@ internal class Program
         var services = new ServiceCollection();
         // Register services
         services.AddTransient<ISmsNotifier, SmsNotifier>();
-        services.AddTransient<IEmailNotifier, EmailNotifier>();
-        services.AddTransient<IDatabaseLogger, DatabaseLogger>();
+        services.AddScoped<IEmailNotifier, EmailNotifier>();
+        services.AddSingleton<IDatabaseLogger, DatabaseLogger>();
         services.AddTransient<IPaymentProcessor, PaymentProcessor>();
 
         // Build container
         var serviceProvider = services.BuildServiceProvider();
 
         //Resolve Services
-        var processer=serviceProvider.GetRequiredService<IPaymentProcessor>();
-        var logger =serviceProvider.GetRequiredService<IDatabaseLogger>();
+        var processer = serviceProvider.GetRequiredService<IPaymentProcessor>();
+        var logger = serviceProvider.GetRequiredService<IDatabaseLogger>();
 
         processer.ProcessPayment(logger);
+
+
+        //Transient
+        var a = serviceProvider.GetService<ISmsNotifier>();
+        var b = serviceProvider.GetService<ISmsNotifier>();
+        var data = a != b; //(different instances)
+
+        //Scoped
+        var c = serviceProvider.GetService<IEmailNotifier>();
+        var d = serviceProvider.GetService<IEmailNotifier>();
+        var data1 = c == d; //(same instances)
+
+
+        //Singleton
+        var e = serviceProvider.GetService<IDatabaseLogger>();
+        var f = serviceProvider.GetService<IDatabaseLogger>();
+        var data2 = e == f; //(same instance always)
+
 
 
 
