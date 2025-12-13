@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="DependencyInjection/DependencyInjection.csproj" Id="54ab5704-13a3-460f-a119-f3215b2638a1" />
   <Project Path="Swagger/Swagger.csproj" />
 </Solution>
