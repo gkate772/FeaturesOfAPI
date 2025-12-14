@@ -136,7 +136,7 @@ Created once and reused
 
 | Lifetime  | Instances Created | Shared             | Common Use         |
 | --------- | ----------------- | ------------------ | ------------------ |
-| Transient | Every request     | ❌                  | Helpers, utilities |
+| Transient | Every request     | ❌                 | Helpers, utilities |
 | Scoped    | Per request       | ✔ (within request) | DbContext          |
 | Singleton | Once              | ✔ (global)         | Cache, config      |
 
