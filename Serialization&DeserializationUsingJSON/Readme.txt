@@ -98,6 +98,54 @@ ______________________________________________________________________________
 
 
 
+@@@ Deserialization
+
+Deserialization converts a JSON string into a C# object.
+using JsonSerializer.Deserialize<<Type>>(jsonString, options);
+
+JsonPropertyName attribute in C# Deserialization
+👉 Maps JSON property to C# property
+[JsonPropertyName("custom_name")]
+public string MyProperty { get; set; }
+👉 Ensures correct mapping during deserialization
+✔ Serialization (Object → JSON)
+✔ Deserialization (JSON → Object)
+[JsonPropertyName] ensures correct mapping between JSON properties and C# properties during deserialization.
+______________________________________________________________________________
+JsonIgnore attribute in C# Deserialization
+👉 Excludes property from deserialization
+[JsonIgnore]
+public string MyProperty { get; set; }
+👉 Property will not be set from JSON data
+[JsonIgnore] excludes a property from being set during deserialization from JSON data.
+______________________________________________________________________________
+JsonInclude attribute in C# Deserialization
+👉 Includes non-public or read-only property in deserialization
+[JsonInclude]
+public string MyProperty { get; private set; }
+👉 Property will be set from JSON data
+[JsonInclude] allows non-public or read-only properties to be set during deserialization from JSON data.
+______________________________________________________________________________
+Deserialize a JSON Array to List of Objects
+List<MyClass> myList = JsonSerializer.Deserialize<List<MyClass>>(jsonArrayString, options);
+👉 JSON array to List<MyClass>
+A JSON array is deserialized into a List of objects using JsonSerializer.Deserialize<List<MyClass>>() in C#.
+______________________________________________________________________________
+@@@ Summary
+Serialization = Object → JSON string
+Deserialization = JSON string → Object
+JsonSerializer.Serialize() for serialization
+JsonSerializer.Deserialize<<Type>>() for deserialization
+JsonSerializerOptions to customize JSON format and behavior
+Attributes:
+[JsonPropertyName] for custom property names
+[JsonIgnore] to exclude properties
+[JsonInclude] to include non-public/read-only properties
+[JsonPropertyOrder] to control property order
+Lists/Arrays serialize as JSON arrays
+This guide covers serialization and deserialization in C# using System.Text.Json, including customization options and attributes for controlling JSON output and behavior.
+______________________________________________________________________________
+
 
 
 
