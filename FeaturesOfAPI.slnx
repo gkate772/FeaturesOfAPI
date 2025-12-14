@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="DependencyInjection/DependencyInjection.csproj" Id="54ab5704-13a3-460f-a119-f3215b2638a1" />
+  <Project Path="Serialization&amp;DeserializationUsingJSON/Serialization&amp;DeserializationUsingJSON.csproj" Id="1e7f7ab2-b0f2-44d6-b199-a2965c8e24c7" />
   <Project Path="Swagger/Swagger.csproj" />
 </Solution>
